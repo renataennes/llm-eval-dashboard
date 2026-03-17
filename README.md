@@ -1,7 +1,8 @@
-# 📊 LLM Eval Dashboard — Model Comparison & Quality Monitoring
+> 📊 Interactive dashboard comparing LLM hallucination rates and quality 
+> scores across models (GPT-4o, Claude, Gemini) and languages (EN vs PT).
 
-> **AI Model Evaluation Portfolio Project** | Renata Araújo  
-> Skills: Python · Streamlit · Power BI · Pandas · Plotly · Data Visualization · LLM Evaluation
+**Stack:** Streamlit · Plotly · Pandas  
+**Status:** 🚧 In progress — deploying Day 28
 
 ---
 

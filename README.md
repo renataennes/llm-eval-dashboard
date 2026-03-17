@@ -1,5 +1,5 @@
->## 📊 Interactive dashboard comparing LLM hallucination rates and quality 
->## scores across models (GPT-4o, Claude, Gemini) and languages (EN vs PT).
+## 📊 Interactive dashboard comparing LLM hallucination rates and quality 
+## scores across models (GPT-4o, Claude, Gemini) and languages (EN vs PT).
 
 **Stack:** Streamlit · Plotly · Pandas  
 **Status:** 🚧 In progress — deploying Day 28

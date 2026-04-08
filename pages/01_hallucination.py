@@ -1,4 +1,4 @@
-# ── Página 1: Hallucination Analysis ─────────────────────────────────
+# Página 1: Hallucination Analysis 
 import streamlit as st
 import pandas as pd
 import plotly.express as px
@@ -12,9 +12,9 @@ st.title("🔍 Hallucination Analysis")
 
 @st.cache_data
 def carregar_dados():
-    ragas = pd.read_csv("data/ragas_baseline.csv")
-    judge = pd.read_csv("data/llm_judge_results.csv")
-    red   = pd.read_csv("data/red_team_results.csv")
+    ragas = pd.read_csv("../data/ragas_baseline.csv") 
+    judge = pd.read_csv("../data/llm_judge_results.csv")
+    red   = pd.read_csv("../data/red_team_results.csv")
     return ragas, judge, red
 
 try:

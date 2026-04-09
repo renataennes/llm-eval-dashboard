@@ -21,7 +21,7 @@ st.divider()
 st.subheader("Kappa por Dimensão")
 
 try:
-    df_kappa = pd.read_csv("../data/kappa_report.csv")
+    df_kappa = pd.read_csv("data/kappa_report.csv")
 
     col_left, col_right = st.columns(2)
 

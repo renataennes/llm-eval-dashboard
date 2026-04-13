@@ -2,7 +2,6 @@
 ## scores across models (GPT-4o, Claude, Gemini) and languages (EN vs PT).
 
 **Stack:** Streamlit · Plotly · Pandas  
-**Status:** 🚧 In progress — deploying Day 28
 
 ---
 
@@ -14,8 +13,7 @@ Built with Streamlit + Plotly — deployable to Streamlit Cloud for free in minu
 
 This project bridges two worlds: **Data Analyst skills** (dashboards, KPIs, visualization) and **AI Evaluation expertise** 
 
-**Live demo:** [streamlit.app/renataennes-llm-eval →](#)  
-**Power BI version:** [`dashboard/LLM_Eval_Dashboard.pbix`](dashboard/LLM_Eval_Dashboard.pbix)
+**Live demo:** [https://llm-eval-dashboard-4c5ztls4equwaqjbnu9rsu.streamlit.app/ →](#)  
 
 ---
 

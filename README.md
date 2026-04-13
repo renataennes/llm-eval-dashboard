@@ -13,7 +13,7 @@ Built with Streamlit + Plotly — deployable to Streamlit Cloud for free in minu
 
 This project bridges two worlds: **Data Analyst skills** (dashboards, KPIs, visualization) and **AI Evaluation expertise** 
 
-**Live demo:** [https://llm-eval-dashboard-4c5ztls4equwaqjbnu9rsu.streamlit.app/ →](#)  
+**Live demo:** [(https://llm-eval-dashboard-4c5ztls4equwaqjbnu9rsu.streamlit.app/)]  
 
 ---
 

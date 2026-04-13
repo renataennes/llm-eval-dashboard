@@ -149,8 +149,8 @@ streamlit run dashboard/app.py
 
 ## 🔗 Related Projects
 
-- [Project 1 — RAG Hallucination Detector](../project1-rag-hallucination/)
-- [Project 2 — Bilingual LLM Annotation Test Set](../project2-annotation-testset/)
+- [Project 1 — RAG Hallucination Detector](https://github.com/renataennes/rag-hallucination-detector))
+- [Project 2 — Bilingual LLM Annotation Test Set](https://github.com/renataennes/llm-annotation-testset))
 
 ---
 

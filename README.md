@@ -1,13 +1,19 @@
-## 📊 Interactive dashboard comparing LLM hallucination rates and quality 
-## scores across models (GPT-4o, Claude, Gemini) and languages (EN vs PT).
+## 📊 Interactive dashboard to compare LLM performance across hallucination, faithfulness, and response quality, with bilingual evaluation (English 🇺🇸 / 
+## Portuguese 🇧🇷🇵🇹).
 
 **Stack:** Streamlit · Plotly · Pandas  
 
 ---
 
-## 📌 Overview
+## 📌 Why this project
 
-An interactive **evaluation dashboard** that compares LLM quality across models (GPT-4o, Claude 3.5, Gemini 1.5) and languages (EN/PT), using results from Projects 1 and 2 as data sources.
+Most LLM demos look good — but fail under real evaluation.
+
+This project answers:
+
+How often do models hallucinate?
+Do they perform differently across languages?
+Can we systematically compare quality?
 
 Built with Streamlit + Plotly — deployable to Streamlit Cloud for free in minutes.
 
@@ -19,71 +25,82 @@ This project bridges two worlds: **Data Analyst skills** (dashboards, KPIs, visu
 
 ## 🎯 Objectives
 
-- Aggregate evaluation results from Projects 1 and 2 into a unified view
-- Compare hallucination rates, faithfulness, and quality scores across models
-- Visualize performance gaps between English and Portuguese
-- Export reports for stakeholder communication
+🧠 What this evaluates
+
+Each response is analyzed across:
+
+Faithfulness → Is the answer grounded in the source?
+Hallucination rate → % of unsupported claims
+Relevance → Does it answer the question?
+Language consistency (EN vs PT)
+
+---
+
+## 🧪 Methodology
+
+Evaluation combines:
+
+Rule-based checks
+LLM-as-a-judge scoring
+Structured evaluation dataset
+
+(See /docs/methodology.md)
 
 ---
 
 ## 🗂️ Project Structure
 
 ```
-project3-eval-dashboard/
+llm-eval-dashboard/
 │
 ├── data/
-│   ├── eval_results_en.json     # From Project 1 (EN)
-│   ├── eval_results_pt.json     # From Project 1 (PT)
-│   ├── annotations_en.jsonl     # From Project 2 (EN)
-│   └── annotations_pt.jsonl    # From Project 2 (PT)
-│
-├── dashboard/
-│   ├── app.py                  # Main Streamlit app
-│   ├── components/
-│   │   ├── overview.py         # Summary KPI cards
-│   │   ├── hallucination.py    # Hallucination analysis charts
-│   │   ├── by_language.py      # EN vs PT comparison
-│   │   ├── by_model.py         # Model comparison view
-│   │   └── sample_explorer.py  # Browse individual examples
-│   └── LLM_Eval_Dashboard.pbix # Power BI version
+│   ├── raw/
+│   │   ├── bias_confidence.csv
+│   │   ├── bias_position.csv
+│   │   ├── bias_verbosity.csv
+│   │   ├── human_vs_llm_agreement.csv
+│   │   ├── kappa_report.csv
+│   │   ├── llm_judge_results.csv
+│   │   ├── ragas_baseline.csv
+│   │   └── red_team_results.csv
+│   │
+│   └── processed/
+│       
 │
 ├── src/
-│   ├── data_loader.py          # Load and normalize all eval data
-│   └── metrics.py              # Reusable metric computations
+│   ├── __init__.py
+│   ├── metrics.py          
+│   ├── evaluator.py        
+│   ├── bias_analysis.py    
+│   └── utils.py
 │
+├── dashboard/
+│   ├── app.py             
+│   └── pages/
+│       ├── hallucination.py   # (01_hallucination.py)
+│       ├── annotation.py      # (02_annotation.py)
+│       └── comparison.py      # (03_comparison.py)
+│
+├── docs/
+│   ├── methodology.md      
+│   └── metrics.md          
+│
+├── results/
+│
+├── .devcontainer/
+├── .gitignore
 ├── requirements.txt
-└── README.md
+├── README.md
+└── LICENSE
 ```
 
 ---
 
-## 📊 Dashboard Sections
+## 📊 Dashboard features
 
-### 1. 🏠 Overview — KPI Cards
-- Total responses evaluated
-- Overall hallucination rate
-- Average faithfulness score
-- % of "excellent" rated responses
-
-### 2. 🔴 Hallucination Analysis
-- Hallucination rate by model (bar chart)
-- Hallucination rate over time / by prompt category
-- Most common unsupported claims (word cloud)
-
-### 3. 🌐 EN vs PT Comparison
-- Side-by-side quality metrics
-- Gap analysis: which dimensions drop most in Portuguese
-- Sample explorer filtered by language
-
-### 4. 🤖 Model Comparison
-- Faithfulness, helpfulness, safety scores per model
-- Radar chart: multi-dimensional model profile
-- Cost vs. quality tradeoff visualization
-
-### 5. 🔍 Example Explorer
-- Browse annotated examples with full context
-- Filter by: label, category, model, language
-- Highlight unsupported claims inline
+Language breakdown (EN vs PT)
+Hallucination distribution
+Metric-based ranking
 
 ---
 
@@ -94,7 +111,6 @@ project3-eval-dashboard/
 | `Streamlit` | Web dashboard framework |
 | `Plotly` | Interactive charts |
 | `Pandas` | Data wrangling |
-| `Power BI` | Enterprise dashboard version |
 | `WordCloud` | Visualize common failure patterns |
 
 ---
@@ -125,25 +141,6 @@ streamlit run dashboard/app.py
 
 ---
 
-## 📸 Dashboard Preview
-
-```
-┌────────────────────────────────────────────────────────────┐
-│  LLM EVAL DASHBOARD              Renata Araújo              │
-├──────────────┬──────────────┬──────────────┬───────────────┤
-│ 120 evaluated│ 18% halluci. │ 0.82 faithful│ 64% excellent │
-├──────────────┴──────────────┴──────────────┴───────────────┤
-│                                                             │
-│  Hallucination Rate by Model          EN vs PT Gap         │
-│  ┌─────────────────────────┐    ┌──────────────────────┐   │
-│  │ gpt-4o     ████ 13%     │    │ EN faithfulness 0.87 │   │
-│  │ claude-3.5 ███  11%     │    │ PT faithfulness 0.79 │   │
-│  │ gemini-1.5 █████ 19%    │    │ Delta: -0.08 ⚠️       │   │
-│  └─────────────────────────┘    └──────────────────────┘   │
-└────────────────────────────────────────────────────────────┘
-```
-
----
 
 ## 🔗 Related Projects
 
